@@ -1,16 +1,18 @@
 window.browser = window.browser || window.chrome
 
 /**
- * @param {Array.<T>} instances
+ * @template T
+ * @param {ReadonlyArray.<T>} instances
  * @returns {T}
  */
 function getRandomInstance(instances) {
-  return instances[~~(instances.length * Math.random())]
+  return instances[instances.length * Math.random() >>> 0]
 }
 
 /**
- * @param {string} currentInstanceUrl
- * @param {Array.<T>} instances
+ * @template T
+ * @param {T} currentInstanceUrl
+ * @param {ReadonlyArray.<T>} instances
  * @returns {T}
  */
 function getNextInstance(currentInstanceUrl, instances) {
@@ -27,7 +29,7 @@ function protocolHost(url) {
   const pathname = url.pathname.replace(/\/$/, "")
 
   // workaround
-  if (pathname == "/TekstoLibre" && url.host.endsWith("github.io"))
+  if (pathname == "/TekstoLibre" && url.host.endsWith(".github.io"))
     return `${url.protocol}//${url.host}${pathname.slice(0, -1)}`
 
   if (url.username && url.password) return `${url.protocol}//${url.username}:${url.password}@${url.host}${pathname}`

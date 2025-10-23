@@ -30,8 +30,8 @@ function all(service, frontend, options, config) {
 /**
  * @param {string} service
  * @param {URL} url
- * @param {{}} config
- * @param {{}} options
+ * @param {Record<string, any>} config
+ * @param {Record<string, any>} options
  * @param {string} frontend
  */
 function regexArray(service, url, config, options, frontend) {
